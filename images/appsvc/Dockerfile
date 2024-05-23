@@ -2,7 +2,8 @@
 ARG BASE_IMAGE
 FROM $BASE_IMAGE as src
 
-ARG VARNISH=false
+ARG VARNISH=true
+ARG REDIS=true
 
 # Configure supervisor
 RUN apk add --no-cache supervisor
@@ -28,6 +29,9 @@ COPY conf/splash.html /etc/varnish/splash.html
 RUN if [ "$VARNISH" = "true" ]; then \
     apk add --no-cache varnish; \
 fi
+
+# Configure redis
+RUN mkdir -p /var/log/redis
 
 RUN if [ "$REDIS" = "true" ]; then \
     apk --update add redis; \
