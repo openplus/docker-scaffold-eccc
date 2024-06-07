@@ -91,6 +91,9 @@ COPY config/ /var/www/config/
 # Copy possible load.environment.php
 COPY load.environment.php /var/www/
 
+# Add auth.json to allow pulling private repos
+COPY auth.json /var/www/auth.json
+
 WORKDIR /var/www
 
 RUN apk --update --no-cache add git openssh-client; \
@@ -115,3 +118,6 @@ RUN ln -s /var/www/vendor/drush/drush/drush /usr/local/bin/drush
 
 # Reset Cache
 RUN php -r 'opcache_reset();'
+
+# Remove auth.json
+RUN rm /var/www/auth.json
