@@ -1,5 +1,5 @@
-# https://github.com/docker-library/drupal/blob/master/10.2/php8.3/fpm-alpine3.19/Dockerfile
-FROM drupal:10.2-php8.3-fpm-alpine
+# Drupal's PHP 8.3 FPM image with PHP 8.3.36 security fixes.
+FROM drupal:10.6.19-php8.3-fpm-alpine
 
 ARG SSH_PRIVATE_KEY
 ARG GIT_USERNAME
